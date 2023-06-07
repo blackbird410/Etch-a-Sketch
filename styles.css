@@ -1,7 +1,7 @@
 body {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     height: 100%;
     margin: 0;
@@ -131,16 +131,26 @@ input:checked + .slider::before {
     background-color: white;
 }
 
-button {
-    background-color: #3882F6;
-    padding: 12px;
+.color, button {
     width: 150px;
     margin-bottom: 8px;
     border-radius: 18px;
+
+}
+
+button {
+    background-color: #3882F6;
+    padding: 12px;
     border-color: aliceblue;
     font-size: 18px;
     font-weight: 800;
     color: white;
+}
+
+.color {
+    border: none;
+    height: 45px;
+    background-color: transparent;
 }
 
 .footer {
@@ -154,4 +164,40 @@ button {
 
 .githubLink {
     text-decoration: none;
+}
+
+@media only screen and (max-width: 600px) {
+    body {
+        gap: 160px;
+    }
+
+    .big_container {
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        padding: 8px;
+    }
+    
+    .left {
+        flex: 1 1 auto;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    button, .color {
+        padding: 6px;
+        width: 100px;
+        font-size: 12px;
+    }
+
+    .footer {
+        margin-top: 55px;
+        padding-top: 24px;
+    }
+
+    .githubLink {
+        font-size: 16px;
+    }
 }
