@@ -120,17 +120,39 @@ function adjustGrid() {
         elt.style.padding = `${n}px`;
     });
 }
+
+function genRainbow() {
+    return randomColor = "#" + Math.floor(Math.random()*16777215).toString(16);
+}
+
 //-------------------------------------------------------------------
 
 let nSquares = 16;
 generateGrid(nSquares, cont_row, container);
 
 let b = 0;
+let colorType = 0;
+
+rainbowButton.addEventListener('click', () => {
+    colorType = 1;
+});
+
+blackShadesButton.addEventListener('click', () => {
+    colorType = 2;
+});
+
+clearButton.addEventListener('click', clearGrid);
 
 document.addEventListener('mouseover', (event) => {
     if (event.target.className === 'grid') {
-        b = b <= 100 ? b + 10: b = 0; 
-        event.target.style.backgroundColor = `rgb(${b}%, ${b}%, ${b}%)`;
+        if (colorType === 1) {
+            event.target.style.backgroundColor = genRainbow();
+        } else if (colorType === 2) {
+            b = b <= 100 ? b + 10: b = 0; 
+            event.target.style.backgroundColor = `rgb(${b}%, ${b}%, ${b}%)`;
+        } else {
+            event.target.style.backgroundColor = colorButton.value;
+        }
     }
 });
 
