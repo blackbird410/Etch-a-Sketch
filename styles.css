@@ -117,8 +117,8 @@ input:checked + .slider::before {
     border: solid;
     border-radius: 12px;
     border-color: grey;
-    min-width: 512px;
-    min-height: 512px;
+    min-width: 516px;
+    min-height: 516px;
 }
 
 .cont-row {
@@ -165,6 +165,15 @@ button {
 .githubLink {
     text-decoration: none;
 }
+
+.fa {
+    margin-left: 8px;
+}
+
+.fa:hover {
+    opacity: 0.7;
+}
+
 
 @media only screen and (max-width: 600px) {
     body {

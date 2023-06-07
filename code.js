@@ -18,6 +18,7 @@ const blackShadesButton = document.createElement('button');
 const clearButton = document.createElement('button');
 const footer = document.createElement('div');
 const link = document.createElement('a');
+const githubLogo = document.createElement('i');
 
 header.className = 'header';
 header_left.className = 'header_left';
@@ -37,6 +38,9 @@ blackShadesButton.className = 'blackShades';
 clearButton.className = 'clearButton';
 footer.className = 'footer';
 link.className ='githubLink';
+githubLogo.className = 'fa';
+githubLogo.classList.add('fa-github');
+
 
 
 switch_io.appendChild(checkBox);
@@ -53,6 +57,7 @@ link.textContent = 'Copyright © 2023 Blackbird410';
 link.href = 'https://github.com/blackbird410/';
 link.target = '_blank';
 link.style.color = "#1F2937";
+githubLogo.style.fontSize = "36px";
 
 header_right.appendChild(switch_io);
 header.appendChild(header_left);
@@ -65,6 +70,7 @@ left.appendChild(clearButton);
 right.appendChild(container);
 big_cont.appendChild(left);
 big_cont.appendChild(right);
+link.appendChild(githubLogo);
 footer.appendChild(link);
 body.appendChild(header);
 body.appendChild(big_cont);
@@ -142,6 +148,14 @@ blackShadesButton.addEventListener('click', () => {
 });
 
 clearButton.addEventListener('click', clearGrid);
+
+/*window.addEventListener('resize', () => {
+    if (window.innerWidth <= 600) {
+        container.style.maxWidth = '450px';
+        container.style.maxHeight = '450px';
+    } 
+});
+*/
 
 document.addEventListener('mouseover', (event) => {
     if (event.target.className === 'grid') {
