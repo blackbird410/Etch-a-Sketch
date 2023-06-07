@@ -139,6 +139,10 @@ generateGrid(nSquares, cont_row, container);
 let b = 0;
 let colorType = 0;
 
+colorButton.addEventListener('input', () => {
+    colorType = 0;
+});
+
 rainbowButton.addEventListener('click', () => {
     colorType = 1;
 });
@@ -148,14 +152,6 @@ blackShadesButton.addEventListener('click', () => {
 });
 
 clearButton.addEventListener('click', clearGrid);
-
-/*window.addEventListener('resize', () => {
-    if (window.innerWidth <= 600) {
-        container.style.maxWidth = '450px';
-        container.style.maxHeight = '450px';
-    } 
-});
-*/
 
 document.addEventListener('mouseover', (event) => {
     if (event.target.className === 'grid') {
