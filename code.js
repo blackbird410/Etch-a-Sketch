@@ -12,14 +12,16 @@ const big_cont = document.createElement('div');
 const left = document.createElement('div');
 const right = document.createElement('div');
 const grid_sizing = document.createElement('div');
+const grid_buttons = document.createElement('div');
 
 // Creating a slider for sizing the grids
-const size_label = document.createElement('label');
 const size_slider = document.createElement('input');
 const size_output = document.createElement('output');
 
 const rainbowButton = document.createElement('button');
+const colorLabel = document.createElement('label');
 const colorButton = document.createElement('input');
+const colorContainer = document.createElement('div');
 const blackShadesButton = document.createElement('button');
 const clearButton = document.createElement('button');
 const footer = document.createElement('div');
@@ -33,6 +35,7 @@ header_right.className = 'header_right';
 container.className = 'container';
 cont_row.className = 'cont-row';
 grid.className = 'grid';
+grid_buttons.className = 'grid_buttons';
 switch_io.className = 'switch';
 checkBox.type = 'checkbox';
 checkBox.checked = 'checked';
@@ -42,8 +45,12 @@ big_cont.className = 'big_container';
 left.className = 'left';
 right.className = 'right';
 
+grid_sizing.className = 'grid_sizing';
 rainbowButton.className = 'rainbow';
+colorLabel.for = 'color';
 colorButton.className = 'color';
+colorButton.id = 'color';
+colorContainer.className = 'colorContainer';
 blackShadesButton.className = 'blackShades';
 clearButton.className = 'clearButton';
 
@@ -52,10 +59,10 @@ link.className ='githubLink';
 githubLogo.className = 'fa';
 githubLogo.classList.add('fa-github');
 
-size_label.for = 'size_slider';
 size_slider.type = 'range';
 size_slider.name = 'size';
 size_slider.id = 'size_slider';
+size_slider.value = '16';
 size_slider.min = '16';
 size_slider.max = '100';
 size_slider.step = '1';
@@ -66,10 +73,10 @@ switch_io.appendChild(checkBox);
 switch_io.appendChild(slider);
 
 header_left.textContent = 'Etch-A-Sketch';
-size_label.textContent = 'Grid Size:';
-size_output.textContent = `${size_slider.value}x${size_slider.value}`;
+size_output.textContent = `Grid Size: ${size_slider.value}x${size_slider.value}`;
 
 rainbowButton.textContent = 'Rainbow';
+colorLabel.textContent = 'Choose color';
 colorButton.type = 'color';
 colorButton.value = '#00FF00';
 blackShadesButton.textContent = 'Black Shades';
@@ -83,14 +90,16 @@ githubLogo.style.fontSize = "36px";
 header_right.appendChild(switch_io);
 header.appendChild(header_left);
 header.appendChild(header_right);
-grid_sizing.appendChild(size_label);
 grid_sizing.appendChild(size_slider);
 grid_sizing.appendChild(size_output);
+colorContainer.appendChild(colorButton);
+colorContainer.appendChild(colorLabel);
+grid_buttons.appendChild(rainbowButton);
+grid_buttons.appendChild(blackShadesButton);
+grid_buttons.appendChild(clearButton);
+left.appendChild(colorContainer);
 left.appendChild(grid_sizing);
-left.appendChild(colorButton);
-left.appendChild(rainbowButton);
-left.appendChild(blackShadesButton);
-left.appendChild(clearButton);
+left.appendChild(grid_buttons);
 right.appendChild(container);
 big_cont.appendChild(left);
 big_cont.appendChild(right);
@@ -120,9 +129,8 @@ function switch_theme() {
 
     body.style.backgroundColor = bg_color;
     link.style.color = text_color;
-    size_label.style.color = text_color;
     size_output.style.color = text_color;
-
+    colorLabel.style.color = text_color;
 }
 
 function clearGrid () {
@@ -174,7 +182,7 @@ let colorType = 0;
 
 size_slider.addEventListener("input", () => {
     let d = size_slider.value;
-    size_output.textContent = `${d}x${d}`;
+    size_output.textContent = `Grid Size: ${d}x${d}`;
     nSquares = size_slider.value;
     clearGrid();
 });

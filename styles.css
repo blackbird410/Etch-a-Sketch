@@ -1,3 +1,7 @@
+html {
+    font-family: 'Roboto', sans-serif;
+}
+
 body {
     display: flex;
     flex-direction: column;
@@ -5,7 +9,6 @@ body {
     align-items: center;
     height: 100%;
     margin: 0;
-    font-family: 'Roboto', sans-serif;
 }
 
 .header {
@@ -95,8 +98,8 @@ input:checked + .slider::before {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    height: clamp(50%, 600px, 75%);
-    gap: 64px;
+    height: clamp(50%, 600px, 90%);
+    gap: 24px;
     padding: 16px;
 }
 
@@ -106,6 +109,7 @@ input:checked + .slider::before {
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+    gap: 16px;
 }
 .container {
     flex: 0 0 auto;
@@ -132,26 +136,56 @@ input:checked + .slider::before {
     background-color: white;
 }
 
-.color, button {
-    width: 150px;
-    margin-bottom: 8px;
-    border-radius: 18px;
+.colorContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
+#color {
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: transparent;
+    width: 100px;
+    height: 100px;
+    border: none;    
+    cursor: pointer;
+}
+
+#color::-webkit-color-swatch {
+    border-radius: 50%;
+    border: 7px solid white;
+}
+
+.grid_sizing {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.grid_buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 button {
+    margin: 8px;
+    padding: 8px;
     background-color: #3882F6;
-    padding: 12px;
     border-color: aliceblue;
-    font-size: 18px;
-    font-weight: 800;
     color: white;
-}
-
-.color {
-    border: none;
-    height: 45px;
-    background-color: transparent;
+    border-radius: 16px;
+    font-size: 15px;
+    font-weight: 600;
+    width: max-content;
+    min-width: min(40%, 100px);
 }
 
 .footer {
@@ -176,35 +210,13 @@ button {
 }
 
 
-@media only screen and (max-width: 600px) {
-    body {
-        gap: 160px;
-    }
-
+@media only screen and (max-width: 700px) {
     .big_container {
         flex-direction: column;
         justify-content: space-between;
         align-items: center;
         gap: 12px;
         padding: 8px;
-    }
-    
-    .left {
-        flex: 1 1 auto;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-    }
-
-    button, .color {
-        padding: 6px;
-        width: 100px;
-        font-size: 12px;
-    }
-
-    .footer {
-        margin-top: 55px;
-        padding-top: 24px;
     }
 
     .githubLink {
