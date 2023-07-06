@@ -11,7 +11,13 @@ const slider = document.createElement('span');
 const big_cont = document.createElement('div');
 const left = document.createElement('div');
 const right = document.createElement('div');
-const addGridButton = document.createElement('button');
+const grid_sizing = document.createElement('div');
+
+// Creating a slider for sizing the grids
+const size_label = document.createElement('label');
+const size_slider = document.createElement('input');
+const size_output = document.createElement('output');
+
 const rainbowButton = document.createElement('button');
 const colorButton = document.createElement('input');
 const blackShadesButton = document.createElement('button');
@@ -23,31 +29,46 @@ const githubLogo = document.createElement('i');
 header.className = 'header';
 header_left.className = 'header_left';
 header_right.className = 'header_right';
+
 container.className = 'container';
 cont_row.className = 'cont-row';
 grid.className = 'grid';
 switch_io.className = 'switch';
 checkBox.type = 'checkbox';
+checkBox.checked = 'checked';
 slider.className = 'slider';
+
 big_cont.className = 'big_container';
 left.className = 'left';
 right.className = 'right';
+
 rainbowButton.className = 'rainbow';
 colorButton.className = 'color';
 blackShadesButton.className = 'blackShades';
 clearButton.className = 'clearButton';
+
 footer.className = 'footer';
 link.className ='githubLink';
 githubLogo.className = 'fa';
 githubLogo.classList.add('fa-github');
 
-
+size_label.for = 'size_slider';
+size_slider.type = 'range';
+size_slider.name = 'size';
+size_slider.id = 'size_slider';
+size_slider.min = '16';
+size_slider.max = '100';
+size_slider.step = '1';
+size_output.className = 'size_output';
+size_output.for = 'size';
 
 switch_io.appendChild(checkBox);
 switch_io.appendChild(slider);
 
 header_left.textContent = 'Etch-A-Sketch';
-addGridButton.textContent = "Add grids";
+size_label.textContent = 'Grid Size:';
+size_output.textContent = `${size_slider.value}x${size_slider.value}`;
+
 rainbowButton.textContent = 'Rainbow';
 colorButton.type = 'color';
 colorButton.value = '#00FF00';
@@ -62,7 +83,10 @@ githubLogo.style.fontSize = "36px";
 header_right.appendChild(switch_io);
 header.appendChild(header_left);
 header.appendChild(header_right);
-left.appendChild(addGridButton);
+grid_sizing.appendChild(size_label);
+grid_sizing.appendChild(size_slider);
+grid_sizing.appendChild(size_output);
+left.appendChild(grid_sizing);
 left.appendChild(colorButton);
 left.appendChild(rainbowButton);
 left.appendChild(blackShadesButton);
@@ -76,23 +100,32 @@ body.appendChild(header);
 body.appendChild(big_cont);
 body.appendChild(footer);
 
+switch_theme();
 checkBox.onclick = switch_theme;
 
 //-----------------------------------------------------------------------
 function switch_theme() {
     let c = document.querySelector('.container');
+    let text_color;
+    let bg_color;
+
     if (checkBox.checked === true) {
-        body.style.backgroundColor = "#1F2937";
-        link.style.color = 'white';
+         text_color = "white";
+         bg_color = "#1F2937";
     } else {
-        body.style.backgroundColor = "white";
-        link.style.color = '#1F2937';
+        text_color = "#1F2937";
+        bg_color = "white";
         c.style.boxShadow = "10px 5px 5px #1F2937";
     }
 
+    body.style.backgroundColor = bg_color;
+    link.style.color = text_color;
+    size_label.style.color = text_color;
+    size_output.style.color = text_color;
+
 }
 
-function clearGrid (nSq) {
+function clearGrid () {
     let box = document.querySelector('.container');
     box.remove();
     
@@ -133,11 +166,18 @@ function genRainbow() {
 
 //-------------------------------------------------------------------
 
-let nSquares = 16;
+let nSquares = size_slider.value;
 generateGrid(nSquares, cont_row, container);
 
 let b = 0;
 let colorType = 0;
+
+size_slider.addEventListener("input", () => {
+    let d = size_slider.value;
+    size_output.textContent = `${d}x${d}`;
+    nSquares = size_slider.value;
+    clearGrid();
+});
 
 colorButton.addEventListener('input', () => {
     colorType = 0;
@@ -164,12 +204,4 @@ document.addEventListener('mouseover', (event) => {
             event.target.style.backgroundColor = colorButton.value;
         }
     }
-});
-
-addGridButton.addEventListener('click', (event) => {
-    do {
-        nSquares = parseInt(prompt('How much squares do you want ? (Max : 100)'));
-    } while (nSquares < 0 || nSquares > 100);
-    
-    clearGrid(nSquares);
 });
